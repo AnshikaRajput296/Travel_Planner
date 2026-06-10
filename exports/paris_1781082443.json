@@ -1,0 +1,130 @@
+{
+  "origin": "Mumbai",
+  "destination": "Paris",
+  "budget": 100000.0,
+  "days": 5,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "2026-09-08",
+  "flight_data": {
+    "origin": "Mumbai",
+    "origin_iata": "BOM",
+    "destination": "Paris",
+    "destination_iata": "CDG",
+    "offers": [
+      {
+        "airline": "Air India",
+        "price_inr": 144000,
+        "stops": 1,
+        "duration": "varies",
+        "stop_label": "1 stop"
+      },
+      {
+        "airline": "Air France",
+        "price_inr": 168000,
+        "stops": 0,
+        "duration": "varies",
+        "stop_label": "Non-stop"
+      },
+      {
+        "airline": "IndiGo",
+        "price_inr": 131200,
+        "stops": 2,
+        "duration": "varies",
+        "stop_label": "2 stops"
+      }
+    ],
+    "cheapest_option": {
+      "airline": "IndiGo",
+      "price_inr": 131200,
+      "stops": 2,
+      "duration": "varies",
+      "stop_label": "2 stops"
+    },
+    "total_cost_inr": 131200,
+    "cost_per_person_inr": 65600,
+    "travelers": 2,
+    "suggested_airlines": [
+      "Air India",
+      "Air France",
+      "IndiGo"
+    ],
+    "data_source": "fare estimate (add AMADEUS_API_KEY for live prices)",
+    "booking_tip": "Book 6-8 weeks in advance for best fares. Compare on Google Flights and MakeMyTrip."
+  },
+  "flight_summary": "Based on the provided flight data, I recommend IndiGo as the best airline for this route due to its cheapest option. \n\nThe round-trip cost for 2 travelers is Rs 131200, with a cost per person of Rs 65600.\n\nFor the best price, it is suggested to book 6-8 weeks in advance. \n\nThe IndiGo option has 2 stops, which may increase travel time, but it offers the most affordable fare. \n\nAs a practical travel tip for this route, consider packing essential items in your carry-on luggage, as flights with multiple stops may increase the risk of lost or delayed checked baggage. \n\nOverall, booking with IndiGo and planning ahead can help you stay within your budget of Rs 100,000 for this 5-day trip to Paris.",
+  "hotel_data": {
+    "destination": "Paris",
+    "nights": 5,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - Paris",
+        "price_per_night": 8000,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - Paris",
+        "price_per_night": 16000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - Paris",
+        "price_per_night": 55000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Economy Hotel - Paris",
+      "price_per_night": 8000,
+      "rating": 3.2,
+      "tier": "Budget",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 40000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "Accommodation recommendations for Paris: \n1. Budget option: Economy Hotel - Paris at Rs 8000 per night, offering basic amenities at an affordable price.\n2. Mid-range option: Standard Hotel - Paris at Rs 16000 per night, providing the best value with a 4.0 rating.\n3. Luxury option: Luxury Hotel - Paris at Rs 55000 per night, offering a premium experience with a 4.7 rating.\n4. Best area to stay in: Central Paris, with easy access to major culinary attractions and landmarks.\n5. Booking platform recommendation: Book via Booking.com or Agoda, selecting 'Free cancellation' for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 100000.0,
+    "flights": 131200,
+    "accommodation": 40000,
+    "food": 11000,
+    "local_transport": 10000,
+    "activities": 16000,
+    "miscellaneous": 5000,
+    "total_estimated": 213200,
+    "remaining_budget": -113200,
+    "budget_status": "\u274c Over Budget",
+    "budget_utilization": 213.2,
+    "daily_average": 42640,
+    "local_currency": "EUR",
+    "local_currency_symbol": "\u20ac",
+    "exchange_rate": 0.00907,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "\u20ac1,934",
+    "daily_avg_local": "\u20ac387",
+    "budget_examples_local": {
+      "Rs 1,000": "\u20ac 9",
+      "Rs 5,000": "\u20ac 45",
+      "Rs 10,000": "\u20ac 91",
+      "Rs 25,000": "\u20ac 227",
+      "Rs 50,000": "\u20ac 454",
+      "Rs 100,000": "\u20ac 907"
+    }
+  },
+  "budget_summary": "**Budget Health Summary**: The current budget is \u20b9213,200 (\u20ac1,934 EUR), exceeding the total budget of \u20b9100,000 (\u20ac907 EUR) by \u20b9113,200 (\u20ac1,027 EUR), resulting in an \u274c Over Budget status.\n\n**Top 3 Money-Saving Tips**:\n1. Book flights in advance to reduce costs (e.g., \u20b980,000 / \u20ac727 EUR instead of \u20b9131,200 / \u20ac1,190 EUR).\n2. Opt for affordable accommodation options like hostels (\u20b920,000 / \u20ac182 EUR instead of \u20b940,000 / \u20ac363 EUR).\n3. Buy a Paris Museum Pass for \u20b98,000 / \u20ac73 EUR to save on activity costs.\n\n**Where to Splurge vs. Save**: Splurge on a Seine River cruise (\u20b94,000 / \u20ac36 EUR) and save on food by eating at cafes (\u20b9500 / \u20ac5 EUR per meal) instead of fine dining restaurants.\n\n**Daily Cash Amount**: Carry \u20ac60-80 (\u20b95,200-\u20b96,900) per day for local expenses.\n\n**Best Payment Method**: Use a combination of cards (for large transactions) and cash (for small purchases) to avoid high transaction fees. Many Parisian shops and restaurants accept card payments.",
+  "itinerary": "Day 1: Introduction to Paris\n- Morning (8am-12pm): Visit the Eiffel Tower, 5 Avenue Anatole France\n- Lunch: Le Relais de l'Entrecote, Steak with B\u00e9arnaise sauce\n- Afternoon (1pm-5pm): Explore the Louvre Museum\n- Dinner: Le Grand Vefour, Duck L'Orange\n- Evening: Seine River cruise\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Buy a Paris Museum Pass for skip-the-line entry\n\nDay 2: Montmartre Delights\n- Morning (8am-12pm): Walk around Montmartre neighborhood\n- Lunch: Le Comptoir du Relais, French Onion Soup\n- Afternoon (1pm-5pm): Visit the Sacre-Coeur Basilica\n- Dinner: Le Consulat, Coq au Vin\n- Evening: Explore the artist-filled Place du Tertre\n- Estimated daily spend: Rs 4000 per person\n- Local tip: Avoid eating at overly touristy cafes\n\nDay 3: Foodie Heaven\n- Morning (8am-12pm): Visit the Marche d'Aligre market\n- Lunch: Breizh Cafe, Crab and Avocado Salad\n- Afternoon (1pm-5pm): Take a pastry-making class\n- Dinner: Septime, Seasonal Tasting Menu\n- Evening: Enjoy a wine bar in the Marais district\n- Estimated daily spend: Rs 6000 per person\n- Local tip: Learn basic French phrases to interact with locals\n\nDay 4: Royal Treats\n- Morning (8am-12pm): Visit the Palace of Versailles\n- Lunch: La Veranda, Chicken and Mushroom Crepes\n- Afternoon (1pm-5pm): Explore the Royal Chapel and Hall of Mirrors\n- Dinner: Le Grand Colbert, Oysters and Foie Gras\n- Evening: Stroll through the Champ de Mars park\n- Estimated daily spend: Rs 5500 per person\n- Local tip: Book Versailles tickets in advance to avoid long lines\n\nDay 5: Market and Cafe Culture\n- Morning (8am-12pm): Visit the Marche aux Puces de Saint-Ouen flea market\n- Lunch: Cafe de Flore, Croque Monsieur\n- Afternoon (1pm-5pm): Explore the trendy Le Marais neighborhood\n- Dinner: Le Loir dans la Theiere, Quiche Lorraine\n- Evening: Enjoy live music at a jazz club\n- Estimated daily spend: Rs 4500 per person\n- Local tip: Haggle politely when shopping at flea markets",
+  "recommendations": "TOP RESTAURANTS\nLe Comptoir du Relais, French, 30-50 EUR (2400-4000 INR), Steak Tartare\nLe Grand Vefour, French, 50-70 EUR (4000-5600 INR), Duck L'Orange\nBreizh Cafe, Creperie, 10-20 EUR (800-1600 INR), Buckwheat Crepe\nSeptime, Contemporary, 100-150 EUR (8000-12000 INR), Seasonal Tasting Menu\nLe Petit Chatelet, Bistro, 20-30 EUR (1600-2400 INR), Coq au Vin\n\nTOP ATTRACTIONS\nThe Louvre, World's largest art museum, morning, 18 EUR (1400 INR)\nEiffel Tower, Iconic landmark, sunset, 17 EUR (1300 INR)\nNotre Dame Cathedral, Historic church, afternoon, free\nPalace of Versailles, Royal palace, morning, 20 EUR (1600 INR)\nMontmartre, Artistic neighborhood, evening, free\n\nHIDDEN GEMS\nMusee de la Vie Romantique, a small museum showcasing art and literature\nLe Jardin des Plantes, a botanical garden with a small zoo\nCanal Saint-Martin, a charming canal with street performers\n\nTRAVEL TIPS\nRespect local customs by not eating on the go or in museums\nUse the metro for best transport, buy a carnet of 10 tickets for 14.50 EUR (1150 INR)\nAvoid scams by not exchanging money on the street\nLearn useful phrases like bonjour and merci\nBe safe by avoiding walking alone in dimly lit areas at night\n\nSHOPPING\nGaleries Lafayette, luxury goods, 50-100 EUR (4000-8000 INR)\nLe Bon Marche, department store, 20-50 EUR (1600-4000 INR)\nMarche aux Puces de Saint-Ouen, flea market, 10-20 EUR (800-1600 INR)",
+  "error": null,
+  "status": "completed"
+}

@@ -1,0 +1,129 @@
+{
+  "origin": "Paris",
+  "destination": "India",
+  "budget": 300000.0,
+  "days": 5,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "2026-09-26",
+  "flight_data": {
+    "origin": "Paris",
+    "origin_iata": "CDG",
+    "destination": "India",
+    "destination_iata": "IND",
+    "offers": [
+      {
+        "airline": "Air India",
+        "price_inr": 82800,
+        "stops": 1,
+        "duration": "varies",
+        "stop_label": "1 stop"
+      },
+      {
+        "airline": "IndiGo",
+        "price_inr": 96600,
+        "stops": 0,
+        "duration": "varies",
+        "stop_label": "Non-stop"
+      },
+      {
+        "airline": "SpiceJet",
+        "price_inr": 75440,
+        "stops": 2,
+        "duration": "varies",
+        "stop_label": "2 stops"
+      }
+    ],
+    "cheapest_option": {
+      "airline": "SpiceJet",
+      "price_inr": 75440,
+      "stops": 2,
+      "duration": "varies",
+      "stop_label": "2 stops"
+    },
+    "total_cost_inr": 75440,
+    "cost_per_person_inr": 37720,
+    "travelers": 2,
+    "suggested_airlines": [
+      "Air India",
+      "IndiGo"
+    ],
+    "data_source": "fare estimate (add AMADEUS_API_KEY for live prices)",
+    "booking_tip": "Book 6-8 weeks in advance for best fares. Compare on Google Flights and MakeMyTrip."
+  },
+  "flight_summary": "Based on the provided flight data, I recommend SpiceJet as the best airline for this route. The reason is that it offers the cheapest option, with a total cost of Rs 75440 for two travelers, which is within the budget of Rs 300,000. \n\nThe round-trip cost per person is Rs 37720, and the total cost is Rs 75440. To get the best price, it is suggested to book 6-8 weeks in advance.\n\nThe SpiceJet flight has 2 stops, which may be a consideration for travelers who prefer non-stop or one-stop flights. However, the cost savings may be worth the extra layovers.\n\nA practical travel tip for this route is to compare prices on Google Flights and MakeMyTrip to ensure you are getting the best fare. Additionally, consider the time of year and demand for travel when booking your flight to get the best possible price.",
+  "hotel_data": {
+    "destination": "India",
+    "nights": 5,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - India",
+        "price_per_night": 2500,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - India",
+        "price_per_night": 6000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - India",
+        "price_per_night": 22000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Standard Hotel - India",
+      "price_per_night": 6000,
+      "rating": 4.0,
+      "tier": "Mid-range",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 30000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "For a 5-night stay in India, here are some accommodation recommendations. \n1. Budget option: Economy Hotel - India at Rs 2500 per night, offering basic amenities with a 3.2 rating.\n2. Mid-range option: Standard Hotel - India at Rs 6000 per night, is the best value pick with a 4.0 rating.\n3. Luxury option: Luxury Hotel - India at Rs 22000 per night, providing a premium experience with a 4.7 rating.\n4. The best area to stay in would depend on the specific city in India, but generally, areas with easy access to local cuisine and markets are recommended for a food and culinary experience.\n5. For booking, it is recommended to use platforms like Booking.com or Agoda, and selecting the 'Free cancellation' option for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 300000.0,
+    "flights": 75440,
+    "accommodation": 30000,
+    "food": 2500,
+    "local_transport": 4000,
+    "activities": 12000,
+    "miscellaneous": 15000,
+    "total_estimated": 138940,
+    "remaining_budget": 161060,
+    "budget_status": "\u2705 Under Budget",
+    "budget_utilization": 46.3,
+    "daily_average": 27788,
+    "local_currency": "INR",
+    "local_currency_symbol": "Rs",
+    "exchange_rate": 1.0,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "Rs138,940",
+    "daily_avg_local": "Rs27,788",
+    "budget_examples_local": {
+      "Rs 1,000": "Rs 1,000",
+      "Rs 5,000": "Rs 5,000",
+      "Rs 10,000": "Rs 10,000",
+      "Rs 25,000": "Rs 25,000",
+      "Rs 50,000": "Rs 50,000",
+      "Rs 100,000": "Rs 100,000"
+    }
+  },
+  "budget_summary": "1. **Budget Health Summary**: The current budget is \u20b9138,940 (Rs138,940 INR), which is under the total budget of \u20b9300,000 (Rs300,000 INR). Status: \u2705 Under Budget.\n\n2. **Top 3 Money-Saving Tips**:\n    - Use public transport (\u20b94,000 / Rs4,000 INR) instead of taxis.\n    - Eat at local eateries (\u20b92,500 / Rs2,500 INR) for food.\n    - Opt for free activities like visiting local markets.\n\n3. **Where to Splurge vs. Save**: Splurge on activities (\u20b912,000 / Rs12,000 INR) and accommodation (\u20b930,000 / Rs30,000 INR) for a comfortable stay. Save on food (\u20b92,500 / Rs2,500 INR) and transport (\u20b94,000 / Rs4,000 INR).\n\n4. **Daily Cash Amount**: \u20b92,500 - \u20b95,000 (Rs2,500 - Rs5,000 INR) per day for incidentals.\n\n5. **Best Payment Method**: Cash is widely accepted, but cards are also accepted at major establishments. It's recommended to use a combination of both. Note: Since the destination is India, the local currency is also INR, so the exchange rate is 1 INR = 1 INR.",
+  "itinerary": "Day 1: Introduction to India\n- Morning (8am-12pm): Visit India Gate in New Delhi\n- Lunch: Karim's, try the Mutton Biryani\n- Afternoon (1pm-5pm): Explore Chandni Chowk market\n- Dinner: Dakshin, try the Chicken Chettinad\n- Evening: Walk around Connaught Place\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Hire a local guide for navigating markets\n\nDay 2: Cultural Immersion\n- Morning (8am-12pm): Visit Qutub Minar in Delhi\n- Lunch: Saravana Bhavan, try the Dosa\n- Afternoon (1pm-5pm): Attend a cooking class\n- Dinner: Indian Accent, try the Meetha Achaar Ribs\n- Evening: Explore Hauz Khas village\n- Estimated daily spend: Rs 6000 per person\n- Local tip: Learn basic Hindi phrases for interaction\n\nDay 3: Food Tour\n- Morning (8am-12pm): Visit Old Delhi streets for street food\n- Lunch: Kake Di Hatti, try the Naan and Chole\n- Afternoon (1pm-5pm): Take a food tour in Delhi\n- Dinner: Varq, try the Galouti Kebab\n- Evening: Enjoy the nightlife at Khan Market\n- Estimated daily spend: Rs 5500 per person\n- Local tip: Try local beverages like Lassi and Jal Jeera\n\nDay 4: Historical Exploration\n- Morning (8am-12pm): Visit Red Fort in Delhi\n- Lunch: Haldiram's, try the Raj Kachori\n- Afternoon (1pm-5pm): Explore the National Museum\n- Dinner: Sattvik, try the Vegetable Biryani\n- Evening: Take a stroll around the Presidential Estate\n- Estimated daily spend: Rs 4500 per person\n- Local tip: Respect local dress codes at monuments\n\nDay 5: Market Exploration\n- Morning (8am-12pm): Visit the Kinari Bazaar in Delhi\n- Lunch: Nando's, try the Chicken Tikka\n- Afternoon (1pm-5pm): Explore the Palika Bazaar\n- Dinner: The Big Chill Cafe, try the Pasta\n- Evening: Explore the Janpath market\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Bargain while shopping at local markets",
+  "recommendations": "TOP RESTAURANTS\nIndian Accent, Contemporary Indian, 2000-5000 INR, Must-order dish: Meetha Achaar Ribs\nKarim's, Mughlai, 500-1000 INR, Must-order dish: Mutton Burra\nBukhara, North Indian, 1500-3000 INR, Must-order dish: Dal Bukhara\nVarq, Modern Indian, 1000-2500 INR, Must-order dish: Galouti Kebab\nDum Pukht, Awadhi, 1000-2000 INR, Must-order dish: Biryani\n\nTOP ATTRACTIONS\nRed Fort, Historical significance and architectural grandeur, Best time to go: Early morning, Entry fee: 50 INR\nQutub Minar, Tallest minaret in India, Best time to go: Late afternoon, Entry fee: 30 INR\nIndia Gate, War memorial and evening stroll, Best time to go: Evening, Entry fee: Free\nNational Museum, Insight into Indian history and culture, Best time to go: Morning, Entry fee: 20 INR\nChandni Chowk, Vibrant street food and shopping, Best time to go: Afternoon, Entry fee: Free\n\nHIDDEN GEMS\nHauz Khas Village, a historic village with trendy cafes and boutiques\nLodhi Gardens, a peaceful park with ancient monuments\nNehru Place, a bustling marketplace for electronics and street food\n\nTRAVEL TIPS\nRespect local customs by dressing modestly and removing shoes at temples\nUse metro or autorickshaws for best transport options\nAvoid common scams like overpriced taxis and fake guides\nUseful phrases include Namaste and Dhanyavad for greetings and gratitude\nBe mindful of pickpocketing and petty theft in crowded areas\n\nSHOPPING\nPalika Bazaar, Electronics and clothing, 500-5000 INR\nSarojini Nagar Market, Street food and affordable clothing, 200-2000 INR\nChandni Chowk, Traditional Indian sweets and spices, 100-1000 INR",
+  "error": null,
+  "status": "completed"
+}
