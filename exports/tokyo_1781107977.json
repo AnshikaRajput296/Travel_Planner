@@ -1,0 +1,130 @@
+{
+  "origin": "Janap",
+  "destination": "Tokyo",
+  "budget": 240000.0,
+  "days": 3,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "",
+  "flight_data": {
+    "origin": "Janap",
+    "origin_iata": "JAN",
+    "destination": "Tokyo",
+    "destination_iata": "TYO",
+    "offers": [
+      {
+        "airline": "Air India",
+        "price_inr": 154800,
+        "stops": 1,
+        "duration": "varies",
+        "stop_label": "1 stop"
+      },
+      {
+        "airline": "Japan Airlines",
+        "price_inr": 180600,
+        "stops": 0,
+        "duration": "varies",
+        "stop_label": "Non-stop"
+      },
+      {
+        "airline": "ANA",
+        "price_inr": 141040,
+        "stops": 2,
+        "duration": "varies",
+        "stop_label": "2 stops"
+      }
+    ],
+    "cheapest_option": {
+      "airline": "ANA",
+      "price_inr": 141040,
+      "stops": 2,
+      "duration": "varies",
+      "stop_label": "2 stops"
+    },
+    "total_cost_inr": 141040,
+    "cost_per_person_inr": 70520,
+    "travelers": 2,
+    "suggested_airlines": [
+      "Air India",
+      "Japan Airlines",
+      "ANA"
+    ],
+    "data_source": "fare estimate (add AMADEUS_API_KEY for live prices)",
+    "booking_tip": "Book 6-8 weeks in advance for best fares. Compare on Google Flights and MakeMyTrip."
+  },
+  "flight_summary": "Based on the provided flight data, I recommend ANA as the best airline for this route due to its cheapest option. \n\nThe round-trip cost for this flight is 141040 INR in total, which translates to 70520 INR per person for 2 travelers. \n\nFor the best price, it is suggested to book the flight 6-8 weeks in advance. \n\nThe ANA flight has 2 stops, which may be a consideration for travelers who prefer non-stop or single-stop flights. \n\nA practical travel tip for this route is to compare prices on multiple platforms such as Google Flights and MakeMyTrip to ensure you are getting the best deal. This will help you make an informed decision and potentially save on your travel expenses.",
+  "hotel_data": {
+    "destination": "Tokyo",
+    "nights": 3,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - Tokyo",
+        "price_per_night": 5000,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - Tokyo",
+        "price_per_night": 10000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - Tokyo",
+        "price_per_night": 32000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Standard Hotel - Tokyo",
+      "price_per_night": 10000,
+      "rating": 4.0,
+      "tier": "Mid-range",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 30000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "For a 3-night stay in Tokyo, I recommend the following accommodations based on your food and culinary preferences and budget of Rs 11,545 per night. \n\n1. Budget option: Economy Hotel - Tokyo, priced at Rs 5000 per night, offering basic amenities.\n2. Mid-range option: Standard Hotel - Tokyo, the best value pick at Rs 10000 per night, with a 4.0 rating.\n3. Luxury option: Luxury Hotel - Tokyo, providing a premium experience at Rs 32000 per night.\n4. Best area to stay in is near Shinjuku or Shibuya for easy access to food and culinary experiences.\n5. Booking platform recommendation is to book via Booking.com or Agoda, selecting 'Free cancellation' for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 240000.0,
+    "flights": 141040,
+    "accommodation": 30000,
+    "food": 4800,
+    "local_transport": 6000,
+    "activities": 9600,
+    "miscellaneous": 12000,
+    "total_estimated": 203440,
+    "remaining_budget": 36560,
+    "budget_status": "\u2705 Under Budget",
+    "budget_utilization": 84.8,
+    "daily_average": 67813,
+    "local_currency": "JPY",
+    "local_currency_symbol": "\u00a5",
+    "exchange_rate": 1.68,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "\u00a5341,779",
+    "daily_avg_local": "\u00a5113,926",
+    "budget_examples_local": {
+      "Rs 1,000": "\u00a5 1,680",
+      "Rs 5,000": "\u00a5 8,400",
+      "Rs 10,000": "\u00a5 16,800",
+      "Rs 25,000": "\u00a5 42,000",
+      "Rs 50,000": "\u00a5 84,000",
+      "Rs 100,000": "\u00a5 168,000"
+    }
+  },
+  "budget_summary": "**Budget Health Summary**: The current total budget is \u20b9203,440 (\u00a5341,779 JPY), which is under the allocated \u20b9240,000 (\u00a5403,200 JPY). The budget health status is: \u2705 Under Budget.\n\n**Top 3 Money-Saving Tips**:\n1. Use public transport (\u20b96,000 / \u00a510,080 JPY) instead of taxis.\n2. Eat at local eateries (\u20b94,800 / \u00a58,064 JPY) for affordable meals.\n3. Visit free temples and parks instead of paid activities.\n\n**Splurge vs. Save**: Splurge on a traditional Japanese dinner (\u20b92,000 / \u00a53,360 JPY) and save on accommodation by staying at a hostel (\u20b930,000 / \u00a550,400 JPY).\n\n**Daily Cash Amount**: Carry \u00a510,000 - \u00a520,000 (\u20b9750 - \u20b91,500) per day for local expenses.\n\n**Best Payment Method**: Use a combination of cash and card. Many places in Tokyo accept cards, but some local eateries and shops may only accept cash. \n\nExchange Rate: 1 INR = 1.684 JPY (as per exchangerate-api.com)",
+  "itinerary": "Day 1: Culinary Delights\n- Morning (8am-12pm): Tsukiji Outer Market\n- Lunch: Sushi Dai, Omakase\n- Afternoon (1pm-5pm): Asakusa food tour\n- Dinner: Narisawa, Japanese wagyu beef\n- Evening: Explore Shinjuku\n- Estimated daily spend: Rs 40,000 per person\n- Local tip: Try to avoid peak hours at Tsukiji\n\nDay 2: Foodie Adventures\n- Morning (8am-12pm): Harajuku shopping\n- Lunch: Ichiran, Tonkotsu Ramen\n- Afternoon (1pm-5pm): Tokyo food street tour\n- Dinner: Nihonryori Ryugin, seasonal seafood\n- Evening: Visit Golden Gai\n- Estimated daily spend: Rs 50,000 per person\n- Local tip: Learn basic Japanese phrases\n\nDay 3: Local Flavors\n- Morning (8am-12pm): Imperial Palace\n- Lunch: Tofuya Ukai, Tofu Kaiseki\n- Afternoon (1pm-5pm): Akihabara electronic district\n- Dinner: Yakitori Alley, grilled chicken\n- Evening: Relax at a traditional izakaya\n- Estimated daily spend: Rs 30,000 per person\n- Local tip: Respect local customs at shrines",
+  "recommendations": "TOP RESTAURANTS\n1. Sushi Saito, Japanese, 20,000-30,000 JPY (14,000-21,000 INR) per person, must-order Omakase.\n2. Narisawa, Japanese, 15,000-25,000 JPY (10,500-17,500 INR) per person, must-order Satoyama.\n3. L'Effervescence, French, 12,000-20,000 JPY (8,400-14,000 INR) per person, must-order Foie Gras.\n4. Tofuya Ukai, Japanese, 5,000-10,000 JPY (3,500-7,000 INR) per person, must-order Tofu Katsu.\n5. Ichiran Shibuya, Japanese, 1,000-2,000 JPY (700-1,400 INR) per person, must-order Tonkotsu Ramen.\n\nTOP ATTRACTIONS\n1. Tokyo Tower, panoramic views of the city, best time to go at sunset, entry fee 900 JPY (630 INR).\n2. Meiji Shrine, serene Shinto shrine, best time to go early morning, entry fee free.\n3. Tsukiji Outer Market, fresh sushi and seafood, best time to go at 5 am, entry fee free.\n4. Asakusa Kannon Temple, historic Buddhist temple, best time to go at noon, entry fee 500 JPY (350 INR).\n5. Imperial Palace, main residence of the Emperor, best time to go at 10 am, entry fee free.\n\nHIDDEN GEMS\n1. Nezu Museum, tranquil garden and art museum.\n2. Kappabashi Dougu Street, unique kitchenware shops.\n3. Yanaka Ginza, charming old shopping street.\n\nTRAVEL TIPS\n1. Local customs: bow upon greeting and remove shoes before entering homes.\n2. Best transport: use the efficient subway system.\n3. Common scams to avoid: beware of overpriced restaurants in tourist areas.\n4. Useful phrases: learn basic Japanese phrases like \"konnichiwa\" and \"arigatou\".\n5. Safety notes: be mindful of pickpocketing in crowded areas.\n\nSHOPPING\n1. Shibuya 109, trendy clothing, 5,000-10,000 JPY (3,500-7,000 INR).\n2. Ginza Mitsukoshi, luxury goods, 10,000-50,000 JPY (7,000-35,000 INR).\n3. Ameya Yokocho, traditional snacks, 500-1,000 JPY (350-700 INR).",
+  "error": null,
+  "status": "completed"
+}

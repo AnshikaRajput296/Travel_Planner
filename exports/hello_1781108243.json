@@ -1,0 +1,129 @@
+{
+  "origin": "Janap",
+  "destination": "Hello",
+  "budget": 240000.0,
+  "days": 3,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "",
+  "flight_data": {
+    "origin": "Janap",
+    "origin_iata": "JAN",
+    "destination": "Hello",
+    "destination_iata": "HEL",
+    "offers": [
+      {
+        "airline": "Air India",
+        "price_inr": 82800,
+        "stops": 1,
+        "duration": "varies",
+        "stop_label": "1 stop"
+      },
+      {
+        "airline": "IndiGo",
+        "price_inr": 96600,
+        "stops": 0,
+        "duration": "varies",
+        "stop_label": "Non-stop"
+      },
+      {
+        "airline": "SpiceJet",
+        "price_inr": 75440,
+        "stops": 2,
+        "duration": "varies",
+        "stop_label": "2 stops"
+      }
+    ],
+    "cheapest_option": {
+      "airline": "SpiceJet",
+      "price_inr": 75440,
+      "stops": 2,
+      "duration": "varies",
+      "stop_label": "2 stops"
+    },
+    "total_cost_inr": 75440,
+    "cost_per_person_inr": 37720,
+    "travelers": 2,
+    "suggested_airlines": [
+      "Air India",
+      "IndiGo"
+    ],
+    "data_source": "fare estimate (add AMADEUS_API_KEY for live prices)",
+    "booking_tip": "Book 6-8 weeks in advance for best fares. Compare on Google Flights and MakeMyTrip."
+  },
+  "flight_summary": "Based on the provided flight data, I recommend SpiceJet as the best airline for this route due to its cheapest option. \nThe round-trip cost for 2 travelers is 150880 INR, with a cost per person of 75440 INR. \nFor the best price, book your tickets 6-8 weeks in advance. \nThe SpiceJet option has 2 stops, which may take longer but is more budget-friendly. \nAs a practical travel tip, compare prices on Google Flights and MakeMyTrip to ensure you get the best deal.",
+  "hotel_data": {
+    "destination": "Hello",
+    "nights": 3,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - Hello",
+        "price_per_night": 2500,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - Hello",
+        "price_per_night": 6000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - Hello",
+        "price_per_night": 22000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Standard Hotel - Hello",
+      "price_per_night": 6000,
+      "rating": 4.0,
+      "tier": "Mid-range",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 18000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "For the destination Hello, accommodation recommendations are as follows:\n1. Budget option: Economy Hotel - Hello at Rs 2500 per night, offering basic amenities.\n2. Mid-range option: Standard Hotel - Hello at Rs 6000 per night, providing the best value with a 4.0 rating.\n3. Luxury option: Luxury Hotel - Hello at Rs 22000 per night, offering a premium experience with a 4.7 rating.\n4. The best area to stay in Hello is not specified, so it is recommended to choose a hotel based on other preferences such as food and culinary options.\n5. Booking platform recommendation: Book via Booking.com or Agoda, selecting 'Free cancellation' for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 240000.0,
+    "flights": 75440,
+    "accommodation": 18000,
+    "food": 12000,
+    "local_transport": 6000,
+    "activities": 9600,
+    "miscellaneous": 12000,
+    "total_estimated": 133040,
+    "remaining_budget": 106960,
+    "budget_status": "\u2705 Under Budget",
+    "budget_utilization": 55.4,
+    "daily_average": 44347,
+    "local_currency": "USD",
+    "local_currency_symbol": "$",
+    "exchange_rate": 0.0105,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "$1,397",
+    "daily_avg_local": "$466",
+    "budget_examples_local": {
+      "Rs 1,000": "$ 10",
+      "Rs 5,000": "$ 52",
+      "Rs 10,000": "$ 105",
+      "Rs 25,000": "$ 262",
+      "Rs 50,000": "$ 525",
+      "Rs 100,000": "$ 1,050"
+    }
+  },
+  "budget_summary": "**Budget Health Summary**: The current total budget is \u20b9133,040 ($1,397 USD), which is under the allocated \u20b9240,000 ($2,520 USD). The exchange rate is approximately 1 INR = 0.0105 USD.\n\n**Top 3 Money-Saving Tips**:\n1. Book accommodations outside the city center (\u20b912,000 / $126 USD per night).\n2. Use public transport (\u20b9200 / $2.10 USD per ride).\n3. Eat at local eateries (\u20b9500 / $5.25 USD per meal).\n\n**Splurge vs. Save**: Splurge on activities (\u20b99,600 / $101 USD) and save on food (\u20b912,000 / $126 USD) by opting for street food.\n\n**Daily Cash Amount**: \u20b94,000 / $42 USD per day.\n\n**Best Payment Method**: Cards are widely accepted, but cash is recommended for small purchases (\u20b9200 / $2.10 USD or less).",
+  "itinerary": "Day 1: Culinary Delights\n- Morning (8am-12pm): Visit the Local Market in Old Town\n- Lunch: Tasty Bites, try the Chicken Biryani\n- Afternoon (1pm-5pm): Cooking class at Spice Route\n- Dinner: Flavor Fusion, recommended dish is Fish Curry\n- Evening: Explore the Night Bazaar\n- Estimated daily spend: Rs 40,000 per person\n- Local tip: Carry water and wear light clothing\n\nDay 2: Foodie Adventures\n- Morning (8am-12pm): Tour the Organic Farm on the outskirts\n- Lunch: The Farm Cafe, try the Veggie Burger\n- Afternoon (1pm-5pm): Visit the Chocolate Factory\n- Dinner: Downtown Diner, recommended dish is Grilled Chicken\n- Evening: Walk along the Riverfront\n- Estimated daily spend: Rs 50,000 per person\n- Local tip: Book farm tour in advance\n\nDay 3: Gastronomic Exploration\n- Morning (8am-12pm): Explore the Street Food scene in the City\n- Lunch: Street Food Stall, try the Local Samosas\n- Afternoon (1pm-5pm): Wine tasting at the Vineyard\n- Dinner: The Gourmet Restaurant, recommended dish is Steak\n- Evening: Live music at the Jazz Club\n- Estimated daily spend: Rs 50,000 per person\n- Local tip: Check vineyard timings before visiting",
+  "recommendations": "TOP RESTAURANTS\n1. Le Bernardin, Seafood, $120-$200 (INR 9000-15000) per person, must-order dish: Pan-Seared Halibut.\n2. Carbone, Italian-American, $50-$100 (INR 3750-7500) per person, must-order dish: Veal Parmesan.\n3. Momofuku Noodle Bar, Pan-Asian, $20-$50 (INR 1500-3750) per person, must-order dish: Pork Buns.\n4. Per Se, Fine Dining, $100-$200 (INR 7500-15000) per person, must-order dish: Foie Gras.\n5. Katz's Delicatessen, Jewish Deli, $15-$30 (INR 1125-2250) per person, must-order dish: Pastrami Sandwich.\n\nTOP ATTRACTIONS\n1. The Metropolitan Museum of Art, to see over 2 million works of art, best time to go is early morning, entry fee is $25 (INR 1875) per person.\n2. Central Park, to escape the city and enjoy nature, best time to go is afternoon, entry fee is free.\n3. Times Square, to experience the city's energy, best time to go is evening, entry fee is free.\n4. 9/11 Memorial & Museum, to pay respects to the victims, best time to go is morning, entry fee is $24 (INR 1800) per person.\n5. Brooklyn Bridge, to see the city skyline, best time to go is sunset, entry fee is free.\n\nHIDDEN GEMS\n1. The Little Red Lighthouse, a small lighthouse under the George Washington Bridge.\n2. Morbid Anatomy Museum, a museum showcasing unusual art and artifacts.\n3. Westlight, a bar with great views of the Manhattan skyline.\n\nTRAVEL TIPS\n1. Respect local customs by tipping at restaurants and bars, 15-20% is standard.\n2. Use the subway or walk to get around the city, it's the best way to see everything.\n3. Avoid common scams like fake ticket sellers and overpriced street vendors.\n4. Learn useful phrases like \"excuse me\" and \"thank you\" to interact with locals.\n5. Be aware of your surroundings and keep an eye on your belongings, especially in crowded areas.\n\nSHOPPING\n1. Fifth Avenue, designer clothing and accessories, $50-$1000 (INR 3750-75000).\n2. SoHo Market, unique souvenirs and gifts, $10-$50 (INR 750-3750).\n3. Brooklyn Flea, vintage clothing and antiques, $20-$100 (INR 1500-7500).",
+  "error": null,
+  "status": "completed"
+}

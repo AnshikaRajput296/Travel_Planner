@@ -1,0 +1,84 @@
+{
+  "origin": "Delhi",
+  "destination": "hello",
+  "budget": 100000.0,
+  "days": 5,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "",
+  "flight_summary": "Invalid destination location: 'hello'",
+  "hotel_data": {
+    "destination": "hello",
+    "nights": 5,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - hello",
+        "price_per_night": 2500,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - hello",
+        "price_per_night": 6000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - hello",
+        "price_per_night": 22000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Standard Hotel - hello",
+      "price_per_night": 6000,
+      "rating": 4.0,
+      "tier": "Mid-range",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 30000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "Accommodation recommendations for hello destination:\n1. Budget option - Economy Hotel - hello, priced at 2500 per night, offers basic amenities with a 3.2 rating.\n2. Mid-range option - Standard Hotel - hello is the best value pick, priced at 6000 per night, with a 4.0 rating, suitable for the given budget of 7000 per night.\n3. Luxury option - Luxury Hotel - hello, priced at 22000 per night, offers a premium experience with a 4.7 rating.\n4. The best area to stay in is not specified in the data provided, so it's recommended to research the destination for the most suitable neighbourhood.\n5. Booking platform recommendation is to book via Booking.com or Agoda, selecting the 'Free cancellation' option for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 100000.0,
+    "flights": 0,
+    "accommodation": 30000,
+    "food": 20000,
+    "local_transport": 10000,
+    "activities": 16000,
+    "miscellaneous": 5000,
+    "total_estimated": 81000,
+    "remaining_budget": 19000,
+    "budget_status": "\u2705 Under Budget",
+    "budget_utilization": 81.0,
+    "daily_average": 16200,
+    "local_currency": "USD",
+    "local_currency_symbol": "$",
+    "exchange_rate": 0.0105,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "$850",
+    "daily_avg_local": "$170",
+    "budget_examples_local": {
+      "Rs 1,000": "$ 10",
+      "Rs 5,000": "$ 52",
+      "Rs 10,000": "$ 105",
+      "Rs 25,000": "$ 262",
+      "Rs 50,000": "$ 525",
+      "Rs 100,000": "$ 1,050"
+    }
+  },
+  "budget_summary": "Since the destination is \"hello\" which is not a valid location, I'll assume a generic destination with an exchange rate of 1 INR = 0.0135 USD (approximate).\n\n1. **Budget health summary**: The total budget is \u20b9100,000 ($1,050 USD), and the total cost is \u20b981,000 ($850 USD), leaving \u20b919,000 ($200 USD) unused. The status is \u2705 Under Budget.\n\n2. **Top 3 money-saving tips**:\n   - Book accommodations outside city centers (\u20b92,000 - $27 USD per night).\n   - Use public transport (\u20b950 - $0.67 USD per ride).\n   - Eat at local eateries (\u20b9200 - $2.70 USD per meal).\n\n3. **Where to splurge vs. save**: Splurge on activities (\u20b916,000 - $168 USD) and save on food (\u20b920,000 - $210 USD) by eating at local eateries.\n\n4. **Daily cash amount**: \u20b92,500 - $33 USD per person per day.\n\n5. **Best payment method**: Use a combination of both card and cash. Major establishments accept cards, but local eateries and transport may require cash (\u20b9500 - $6.75 USD notes).",
+  "itinerary": "Day 1: Introduction to Local Cuisine\n- Morning (8am-12pm): Visit the local market at Mahatma Phule Market\n- Lunch: The Bombay Canteen, try the Vada Pav\n- Afternoon (1pm-5pm): Take a food tour of the city\n- Dinner: The Table, recommended dish is Grilled Chicken\n- Evening: Explore the Colaba Causeway\n- Estimated daily spend: Rs 4000 per person\n- Local tip: Always carry a water bottle to stay hydrated\n\nDay 2: Street Food Exploration\n- Morning (8am-12pm): Try street food at Street Food Heaven, Mohammed Ali Road\n- Lunch: Bademiya, try the Seekh Kabab\n- Afternoon (1pm-5pm): Visit the Haji Ali Dargah\n- Dinner: Leopold Cafe, recommended dish is Chicken Tikka Masala\n- Evening: Walk along the Marine Drive\n- Estimated daily spend: Rs 3500 per person\n- Local tip: Be mindful of the crowds and lines at popular eateries\n\nDay 3: Regional Specialties\n- Morning (8am-12pm): Explore the Gujarat Bhavan for regional food\n- Lunch: Soam, try the Gujarati Thali\n- Afternoon (1pm-5pm): Visit the Chor Bazaar\n- Dinner: Gajalee, recommended dish is the Pomfret Fish\n- Evening: Explore the nearby Crawford Market\n- Estimated daily spend: Rs 4200 per person\n- Local tip: Haggle politely while shopping at local markets\n\nDay 4: Fine Dining Experience\n- Morning (8am-12pm): Visit the Nehru Centre for art and culture\n- Lunch: India Jones, try the Chicken Satay\n- Afternoon (1pm-5pm): Take a cooking class at a local culinary school\n- Dinner: The Sassy Spoon, recommended dish is the Ravioli\n- Evening: Enjoy the nightlife at the rooftop bars\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Book reservations in advance for fine dining restaurants\n\nDay 5: Coastal Cuisine\n- Morning (8am-12pm): Visit the Sassoon Docks for seafood shopping\n- Lunch: The Gadda Da Vida, try the Seafood Paella\n- Afternoon (1pm-5pm): Relax at the Juhu Beach\n- Dinner: Govinda's, recommended dish is the Vegetarian Thali\n- Evening: Take a sunset stroll along the beach\n- Estimated daily spend: Rs 3800 per person\n- Local tip: Be cautious of the strong sun and use sun protection",
+  "recommendations": "TOP RESTAURANTS\nBistro Bliss, French, $20-$30 (INR 1400-2100), must-order dish is Coq au Vin.\nTaste of India, Indian, $15-$25 (INR 1000-1750), must-order dish is Chicken Tikka Masala.\nSakura, Japanese, $25-$35 (INR 1750-2450), must-order dish is Sushi Platter.\nCafe Italiano, Italian, $18-$28 (INR 1250-1950), must-order dish is Pasta Carbonara.\nSpice Route, Chinese, $12-$22 (INR 850-1550), must-order dish is Kung Pao Chicken.\n\nTOP ATTRACTIONS\nNational Museum, to learn about local history and culture, best time to go is morning, entry fee is $5 (INR 350).\nLocal Market, to experience street food and shopping, best time to go is evening, entry fee is free.\nBotanical Garden, to see exotic plants and flowers, best time to go is afternoon, entry fee is $3 (INR 200).\nHistoric Landmark, to see ancient architecture, best time to go is morning, entry fee is $8 (INR 550).\nArt Gallery, to see local art and exhibitions, best time to go is afternoon, entry fee is $4 (INR 275).\n\nHIDDEN GEMS\nLocal Street Food Stall, a small stall serving traditional snacks and drinks.\nHidden Garden, a small park with beautiful flowers and peaceful atmosphere.\nVintage Bookstore, a store with a wide collection of old and rare books.\n\nTRAVEL TIPS\nRespect local customs by dressing modestly and removing shoes when entering temples.\nUse public transport or taxis for best transportation.\nBe aware of common scams like overpriced tours and fake products.\nUseful phrases include \"hello\" and \"thank you\" in the local language.\nBe safe by avoiding traveling alone at night and keeping valuables secure.\n\nSHOPPING\nLocal Market, to buy traditional clothes and souvenirs, price range $10-$50 (INR 700-3500).\nShopping Mall, to buy international brands and electronics, price range $20-$100 (INR 1400-7000).\nVintage Store, to buy antique and vintage items, price range $15-$75 (INR 1000-5250).",
+  "error": null,
+  "status": "completed"
+}

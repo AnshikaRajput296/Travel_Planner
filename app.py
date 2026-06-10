@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 from guardrails.validator import validate_inputs
 from graph.travel_graph import run_travel_pipeline
-
+from validators.location_validator import is_valid_location
 # ── Bootstrap ──────────────────────────────────────────────────────────────
 load_dotenv()
 Path("exports").mkdir(exist_ok=True)
@@ -612,6 +612,12 @@ if generate_btn:
         st.error("Please enter a destination.")
     elif not origin.strip():
         st.error("Please enter an origin city.")
+    elif not is_valid_location(origin):
+        st.error(f"Invalid origin location: '{origin}'")
+        st.stop()
+    elif not is_valid_location(destination):
+        st.error(f"Invalid destination location: '{destination}'")
+        st.stop()
     elif not api_key or api_key == "your_groq_api_key_here":
         st.error("Please enter your GROQ_API_KEY.")
     else:
@@ -695,6 +701,9 @@ if generate_btn:
 # ===========================================================================
 # RESULTS DASHBOARD
 # ===========================================================================
+
+
+
 plan = st.session_state.plan_result
 if not plan:
     st.stop()

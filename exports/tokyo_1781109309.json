@@ -1,0 +1,130 @@
+{
+  "origin": "janap",
+  "destination": "Tokyo",
+  "budget": 100000.0,
+  "days": 5,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "",
+  "flight_data": {
+    "origin": "janap",
+    "origin_iata": "JAN",
+    "destination": "Tokyo",
+    "destination_iata": "TYO",
+    "offers": [
+      {
+        "airline": "Air India",
+        "price_inr": 154800,
+        "stops": 1,
+        "duration": "varies",
+        "stop_label": "1 stop"
+      },
+      {
+        "airline": "Japan Airlines",
+        "price_inr": 180600,
+        "stops": 0,
+        "duration": "varies",
+        "stop_label": "Non-stop"
+      },
+      {
+        "airline": "ANA",
+        "price_inr": 141040,
+        "stops": 2,
+        "duration": "varies",
+        "stop_label": "2 stops"
+      }
+    ],
+    "cheapest_option": {
+      "airline": "ANA",
+      "price_inr": 141040,
+      "stops": 2,
+      "duration": "varies",
+      "stop_label": "2 stops"
+    },
+    "total_cost_inr": 141040,
+    "cost_per_person_inr": 70520,
+    "travelers": 2,
+    "suggested_airlines": [
+      "Air India",
+      "Japan Airlines",
+      "ANA"
+    ],
+    "data_source": "fare estimate (add AMADEUS_API_KEY for live prices)",
+    "booking_tip": "Book 6-8 weeks in advance for best fares. Compare on Google Flights and MakeMyTrip."
+  },
+  "flight_summary": "Based on the provided flight data, I recommend ANA as the best airline for your trip from Janap to Tokyo. ANA offers the cheapest option with a total cost of 141040 INR for two travelers, which translates to 70520 INR per person. \n\nThe best time to book your flights is 6-8 weeks in advance for the best fares. Since ANA has 2 stops, the layover and routing may vary, so it's essential to check the flight details before booking.\n\nFor your 5-day trip, consider booking in advance to get the best prices. One travel tip is to compare prices on Google Flights and MakeMyTrip to ensure you get the best deal. \n\nRound-trip cost: 70520 INR per person, 141040 INR total. Booking in advance and comparing prices can help you make the most of your budget of 100000 INR.",
+  "hotel_data": {
+    "destination": "Tokyo",
+    "nights": 5,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - Tokyo",
+        "price_per_night": 5000,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - Tokyo",
+        "price_per_night": 10000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - Tokyo",
+        "price_per_night": 32000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Economy Hotel - Tokyo",
+      "price_per_night": 5000,
+      "rating": 3.2,
+      "tier": "Budget",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 25000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "For a 5-night stay in Tokyo, here are some accommodation recommendations. \n1. Budget option: Economy Hotel - Tokyo at Rs 5000 per night, offering basic amenities.\n2. Mid-range option: Standard Hotel - Tokyo at Rs 10000 per night is the best value pick, providing a balance of price and quality.\n3. Luxury option: Luxury Hotel - Tokyo at Rs 32000 per night, offering a premium experience with high-end amenities.\n4. The best area to stay in is Shinjuku or Shibuya, known for their food and culinary options.\n5. Booking platform recommendation: Book via Booking.com or Agoda and select 'Free cancellation' for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 100000.0,
+    "flights": 141040,
+    "accommodation": 25000,
+    "food": 8000,
+    "local_transport": 10000,
+    "activities": 16000,
+    "miscellaneous": 5000,
+    "total_estimated": 205040,
+    "remaining_budget": -105040,
+    "budget_status": "\u274c Over Budget",
+    "budget_utilization": 205.0,
+    "daily_average": 41008,
+    "local_currency": "JPY",
+    "local_currency_symbol": "\u00a5",
+    "exchange_rate": 1.68,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "\u00a5344,467",
+    "daily_avg_local": "\u00a568,893",
+    "budget_examples_local": {
+      "Rs 1,000": "\u00a5 1,680",
+      "Rs 5,000": "\u00a5 8,400",
+      "Rs 10,000": "\u00a5 16,800",
+      "Rs 25,000": "\u00a5 42,000",
+      "Rs 50,000": "\u00a5 84,000",
+      "Rs 100,000": "\u00a5 168,000"
+    }
+  },
+  "budget_summary": "**Budget Health Summary:** The current budget of \u20b9100,000 (\u00a5168,000 JPY) is exceeded by \u20b9105,040 (\u00a5176,467 JPY), resulting in an \u274c Over Budget status.\n\n**Top 3 Money-Saving Tips:**\n1. Book flights in advance to reduce costs (e.g., \u20b9141,040 / \u00a5236,947 JPY to \u20b980,000 / \u00a5134,400 JPY).\n2. Opt for budget-friendly accommodation (e.g., \u20b925,000 / \u00a542,000 JPY to \u20b915,000 / \u00a525,200 JPY).\n3. Try local street food instead of restaurants (e.g., \u20b98,000 / \u00a513,440 JPY to \u20b94,000 / \u00a56,720 JPY).\n\n**Splurge vs. Save:** Splurge on unique experiences like sumo wrestling tournaments (\u20b95,000 / \u00a58,400 JPY) and save on accommodation and food.\n\n**Daily Cash Amount:** \u20b94,000 (\u00a56,720 JPY) per day for incidentals and local expenses.\n\n**Best Payment Method:** Both card and cash are widely accepted in Tokyo. However, cash is preferred at local markets and small shops. Consider using a debit/credit card with no foreign transaction fees. \n\nExchange Rate: 1 INR = 1.68 JPY (live exchangerate-api.com)",
+  "itinerary": "Day 1: Culinary Introduction\n- Morning (8am-12pm): Tsukiji Outer Market\n- Lunch: Sushi Dai, Omakase\n- Afternoon (1pm-5pm): Asakusa district\n- Dinner: Nakajima no Ochaya, Tempura\n- Evening: Explore Shinjuku\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Buy a Suica card for easy travel\n\nDay 2: Foodie Delights\n- Morning (8am-12pm): Shibuya Market\n- Lunch: Nonbei Yokocho, Yakitori\n- Afternoon (1pm-5pm): Harajuku shopping\n- Dinner: Ichiran Shibuya, Ramen\n- Evening: Roppongi Hills\n- Estimated daily spend: Rs 4500 per person\n- Local tip: Try small eateries for authentic taste\n\nDay 3: Cultural Experiences\n- Morning (8am-12pm): Meiji Shrine\n- Lunch: Yabu Soba, Soba noodles\n- Afternoon (1pm-5pm): Tokyo National Museum\n- Dinner: Toriki, Grilled chicken\n- Evening: Imperial Palace\n- Estimated daily spend: Rs 4000 per person\n- Local tip: Respect dress code at shrines\n\nDay 4: Pop Culture\n- Morning (8am-12pm): Akihabara district\n- Lunch: Maidreamin, Maid cafe\n- Afternoon (1pm-5pm): Ghibli Museum\n- Dinner: Tsukemen Gyoza no Ohsho, Tsukemen\n- Evening: Shibuya Crossing\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Learn basic Japanese phrases\n\nDay 5: Local Life\n- Morning (8am-12pm): Odaiba Island\n- Lunch: Tsukiji Fish Market, Sushi\n- Afternoon (1pm-5pm): Sumo tournament\n- Dinner: Han no Daidokoro Bettei, Kaiseki\n- Evening: Ginza district\n- Estimated daily spend: Rs 6000 per person\n- Local tip: Try local snacks at convenience stores",
+  "recommendations": "TOP RESTAURANTS\nSukiyabashi Jiro, Sushi, 20,000-30,000 JPY (14,000-21,000 INR) per person, must-order dish: Omakase.\nNarisawa, Japanese, 15,000-25,000 JPY (10,500-17,500 INR) per person, must-order dish: Satoyama.\nTofuya Ukai, Tofu, 5,000-10,000 JPY (3,500-7,000 INR) per person, must-order dish: Tofu Katsu.\nIchiran Shibuya, Ramen, 890-1,000 JPY (620-700 INR) per person, must-order dish: Tonkotsu Ramen.\nAsakaze Nakamura, Kaiseki, 10,000-20,000 JPY (7,000-14,000 INR) per person, must-order dish: Seasonal Kaiseki.\n\nTOP ATTRACTIONS\nShibuya Crossing, experience busiest intersection, best time to go: evening, entry fee: free.\nMeiji Shrine, dedicated to Emperor Meiji, best time to go: morning, entry fee: free.\nTsukiji Outer Market, fresh seafood and sushi, best time to go: morning, entry fee: free.\nTokyo Tower, panoramic views of city, best time to go: sunset, entry fee: 2,060 JPY (1,400 INR).\nAsakusa Kannon Temple, ancient Buddhist temple, best time to go: morning, entry fee: 500 JPY (350 INR).\n\nHIDDEN GEMS\nNeon Museum, showcases vintage neon signs, located in Shinjuku.\nKappabashi Dougu Street, shopping street for kitchen tools and gadgets, located in Asakusa.\nImperial Palace East Garden, beautiful traditional Japanese garden, located in Chiyoda.\n\nTRAVEL TIPS\nLearn basic Japanese customs like bowing and using chopsticks to show respect.\nUse Tokyo Metro for best transport, buy a prepaid IC card like Suica or Pasmo.\nBe cautious of pickpocketing in crowded areas and train stations, keep valuables secure.\nLearn useful phrases like \"konnichiwa\" (hello) and \"arigatou\" (thank you).\nCarry a portable Wi-Fi hotspot and keep hotel address written in Japanese for safety.\n\nSHOPPING\nGinza Mitsukoshi, department store with high-end goods, price range: 5,000-50,000 JPY (3,500-35,000 INR).\nAmeya Yokocho, shopping street with traditional snacks and souvenirs, price range: 500-2,000 JPY (350-1,400 INR).\nDon Quijote, discount store with variety of goods, price range: 1,000-10,000 JPY (700-7,000 INR).",
+  "error": null,
+  "status": "completed"
+}

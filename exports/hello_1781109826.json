@@ -1,0 +1,84 @@
+{
+  "origin": "Delhi",
+  "destination": "hello",
+  "budget": 100000.0,
+  "days": 5,
+  "travelers": 2,
+  "preferences": [
+    "Food & Culinary"
+  ],
+  "travel_dates": "",
+  "flight_summary": "Invalid destination location: 'hello'",
+  "hotel_data": {
+    "destination": "hello",
+    "nights": 5,
+    "rooms_needed": 1,
+    "options": [
+      {
+        "name": "Economy Hotel - hello",
+        "price_per_night": 2500,
+        "rating": 3.2,
+        "tier": "Budget",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Standard Hotel - hello",
+        "price_per_night": 6000,
+        "rating": 4.0,
+        "tier": "Mid-range",
+        "source": "published rate estimate"
+      },
+      {
+        "name": "Luxury Hotel - hello",
+        "price_per_night": 22000,
+        "rating": 4.7,
+        "tier": "Luxury",
+        "source": "published rate estimate"
+      }
+    ],
+    "recommended": {
+      "name": "Standard Hotel - hello",
+      "price_per_night": 6000,
+      "rating": 4.0,
+      "tier": "Mid-range",
+      "source": "published rate estimate"
+    },
+    "total_hotel_cost": 30000,
+    "data_source": "published rate estimate (add RAPIDAPI_KEY for live Booking.com prices)",
+    "booking_tip": "Book via Booking.com or Agoda. Select 'Free cancellation' for flexibility."
+  },
+  "hotel_summary": "Accommodation recommendations for hello:\n1. Budget option - Economy Hotel at Rs 2500 per night, offering basic amenities.\n2. Mid-range option - Standard Hotel at Rs 6000 per night, providing the best value with a 4.0 rating.\n3. Luxury option - Luxury Hotel at Rs 22000 per night, offering a premium experience with a 4.7 rating.\n4. Best area to stay - The hotel data does not specify the best area, however it is recommended to stay near the city center for easy access to culinary experiences.\n5. Booking platform recommendation - Book via Booking.com or Agoda and select 'Free cancellation' for flexibility.",
+  "budget_breakdown": {
+    "total_budget": 100000.0,
+    "flights": 0,
+    "accommodation": 30000,
+    "food": 20000,
+    "local_transport": 10000,
+    "activities": 16000,
+    "miscellaneous": 5000,
+    "total_estimated": 81000,
+    "remaining_budget": 19000,
+    "budget_status": "\u2705 Under Budget",
+    "budget_utilization": 81.0,
+    "daily_average": 16200,
+    "local_currency": "USD",
+    "local_currency_symbol": "$",
+    "exchange_rate": 0.0105,
+    "rate_source": "live (exchangerate-api.com)",
+    "total_estimated_local": "$850",
+    "daily_avg_local": "$170",
+    "budget_examples_local": {
+      "Rs 1,000": "$ 10",
+      "Rs 5,000": "$ 52",
+      "Rs 10,000": "$ 105",
+      "Rs 25,000": "$ 262",
+      "Rs 50,000": "$ 525",
+      "Rs 100,000": "$ 1,050"
+    }
+  },
+  "budget_summary": "Since the destination is not specified, I'll assume a generic destination with an exchange rate of 1 INR = 0.0135 USD (approximately).\n\n1. **Budget health summary**: The trip is currently \u20b919,000 ($250 USD) under budget, with a total spend of \u20b981,000 ($1,075 USD) out of \u20b9100,000 ($1,350 USD).\n2. **Top 3 money-saving tips**:\n\t* Book accommodation outside city centers (\u20b92,000 - $27 USD per night).\n\t* Use public transport (\u20b950 - $0.67 USD per ride).\n\t* Eat at local eateries (\u20b9200 - $2.70 USD per meal).\n3. **Where to splurge vs. save**: Splurge on activities (\u20b916,000 - $216 USD) and save on food (\u20b920,000 - $270 USD) by opting for street food.\n4. **Daily cash amount**: \u20b92,000 - $27 USD per person per day.\n5. **Best payment method**: Use a combination of card (for accommodation and activities) and cash (for food and transport) to avoid high card fees.",
+  "itinerary": "Day 1: Culinary Introduction\n- Morning (8am-12pm): Visit Local Market in Old Town\n- Lunch: Tasty Bites, try Chicken Biryani\n- Afternoon (1pm-5pm): Cooking Class at Spice Route\n- Dinner: Downtown Diner, recommend Butter Chicken\n- Evening: Explore Night Market\n- Estimated daily spend: Rs 4000 per person\n- Local tip: Carry water and wear breathable clothing\n\nDay 2: Food Trails\n- Morning (8am-12pm): Street Food Tour in City Center\n- Lunch: Foodie's Paradise, try Paneer Tikka\n- Afternoon (1pm-5pm): Visit Local Farm at Green Valley\n- Dinner: The Grill House, recommend Fish Curry\n- Evening: Walk along Riverfront\n- Estimated daily spend: Rs 3500 per person\n- Local tip: Try local transportation for authenticity\n\nDay 3: Cultural Delights\n- Morning (8am-12pm): Visit Cultural Museum in Art District\n- Lunch: Cafe Culture, try Veggie Wrap\n- Afternoon (1pm-5pm): Attend Food Festival at Exhibition Ground\n- Dinner: The Spice Hub, recommend Lamb Korma\n- Evening: Explore Local Shops\n- Estimated daily spend: Rs 4200 per person\n- Local tip: Respect local customs and traditions\n\nDay 4: Wine and Dine\n- Morning (8am-12pm): Wine Tasting at Vineyard Estate\n- Lunch: The Wine Cellar, try Chicken Caesar\n- Afternoon (1pm-5pm): Visit Gourmet Food Store in Uptown\n- Dinner: Fine Dining Restaurant, recommend Steak\n- Evening: Enjoy Live Music at Jazz Club\n- Estimated daily spend: Rs 5000 per person\n- Local tip: Book wine tasting in advance\n\nDay 5: Local Specialties\n- Morning (8am-12pm): Visit Local Bakery in Downtown\n- Lunch: The Bakery Cafe, try Chicken Quiche\n- Afternoon (1pm-5pm): Take a Chocolate Making Class\n- Dinner: The Local Eatery, recommend Fish Fry\n- Evening: Relax at Hotel or Explore Nearby Park\n- Estimated daily spend: Rs 3800 per person\n- Local tip: Try local desserts and pastries",
+  "recommendations": "TOP RESTAURANTS\n1. Le Bernardin, Seafood, $120-$200 (INR 9000-15000), must-order Pan-Seared Scallops.\n2. Carbone, Italian-American, $50-$100 (INR 3750-7500), must-order Lobster Fra Diavolo.\n3. Peter Luger Steak House, Steakhouse, $60-$120 (INR 4500-9000), must-order Porterhouse Steak.\n4. Di Fara Pizza, Pizzeria, $15-$30 (INR 1125-2250), must-order Classic Square Slice.\n5. Momofuku Noodle Bar, Pan-Asian, $20-$40 (INR 1500-3000), must-order Pork Buns.\n\nTOP ATTRACTIONS\n1. Statue of Liberty, Iconic landmark and symbol of freedom, best time to go is early morning, entry fee $21.50 (INR 1625).\n2. Central Park, Scenic green space in the middle of Manhattan, best time to go is afternoon, entry fee free.\n3. Metropolitan Museum of Art, World-class art museum, best time to go is morning, entry fee $25 (INR 1875).\n4. Brooklyn Bridge, Historic bridge with great city views, best time to go is sunset, entry fee free.\n5. 9/11 Memorial & Museum, Tribute to the victims of the 9/11 attacks, best time to go is late afternoon, entry fee $24 (INR 1800).\n\nHIDDEN GEMS\n1. The Moravian Cemetery, a historic cemetery with interesting gravestones and a peaceful atmosphere.\n2. The Little Red Lighthouse, a small lighthouse under the George Washington Bridge.\n3. The New York Earth Room, an indoor sculpture featuring 280,000 pounds of dirt.\n\nTRAVEL TIPS\n1. Respect local customs by tipping at least 15% in restaurants and bars.\n2. Use the subway or walk to get around the city, as traffic can be heavy.\n3. Avoid common scams like paying for fake street performances or buying counterfeit goods.\n4. Learn useful phrases like \"excuse me\" and \"thank you\" to interact with locals.\n5. Be aware of your surroundings and keep an eye on your belongings, especially in crowded areas.\n\nSHOPPING\n1. SoHo, buy designer clothing and accessories, price range $50-$500 (INR 3750-37500).\n2. Brooklyn Flea, buy vintage goods and street food, price range $10-$100 (INR 750-7500).\n3. Chinatown, buy affordable souvenirs and try street food, price range $5-$50 (INR 375-3750).",
+  "error": null,
+  "status": "completed"
+}
