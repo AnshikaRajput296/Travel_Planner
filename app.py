@@ -21,6 +21,8 @@ from dotenv import load_dotenv
 from guardrails.validator import validate_inputs
 from graph.travel_graph import run_travel_pipeline
 from validators.location_validator import is_valid_location
+from tools.currency_tool import currency_for_origin, SYMBOLS, fmt_currency
+
 # ── Bootstrap ──────────────────────────────────────────────────────────────
 load_dotenv()
 Path("exports").mkdir(exist_ok=True)
@@ -35,19 +37,43 @@ st.set_page_config(
 
 
 # ===========================================================================
-# HELPER FUNCTIONS  — defined at top to prevent NameError
+# HELPER FUNCTIONS
 # ===========================================================================
 
-def _fmt(n: float) -> str:
-    """Format a number as Indian rupee string."""
-    return f"Rs {round(n):,}"
+def _get_origin_currency(plan: dict | None = None) -> tuple[str, str]:
+    """
+    Return (currency_code, symbol) for the origin in the current plan.
+    Falls back gracefully when no plan is loaded yet.
+    """
+    if plan:
+        bd = plan.get("budget_breakdown") or {}
+        code   = bd.get("origin_currency") or currency_for_origin(plan.get("origin", ""))
+        symbol = bd.get("origin_currency_symbol") or SYMBOLS.get(code, code)
+        return code, symbol
+    # Before a plan is generated, use sidebar origin value if set
+    origin_val = st.session_state.get("_sidebar_origin", "Delhi")
+    code   = currency_for_origin(origin_val)
+    symbol = SYMBOLS.get(code, code)
+    return code, symbol
+
+
+def _fmt(n: float, plan: dict | None = None) -> str:
+    """Format a number using the origin currency of the current plan."""
+    code, symbol = _get_origin_currency(plan or st.session_state.get("plan_result"))
+    return fmt_currency(n, code, symbol)
 
 
 def _build_text_report(plan: dict) -> str:
-    bd    = plan.get("budget_breakdown", {})
-    orig  = plan.get("origin", "")
-    dest  = plan.get("destination", "")
-    route = f"{orig} to {dest}" if orig else dest
+    bd     = plan.get("budget_breakdown", {})
+    orig   = plan.get("origin", "")
+    dest   = plan.get("destination", "")
+    route  = f"{orig} to {dest}" if orig else dest
+    o_sym  = bd.get("origin_currency_symbol", "Rs")
+    o_code = bd.get("origin_currency", "INR")
+
+    def f(n):
+        return fmt_currency(float(n or 0), o_code, o_sym)
+
     lines = [
         "=" * 62,
         f"  VOYAGEAI TRAVEL PLAN",
@@ -55,19 +81,19 @@ def _build_text_report(plan: dict) -> str:
         "=" * 62,
         f"Duration  : {plan.get('days')} days",
         f"Travelers : {plan.get('travelers')}",
-        f"Budget    : {_fmt(plan.get('budget', 0))}",
+        f"Budget    : {f(plan.get('budget', 0))}",
         f"Generated : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}",
         "",
         "BUDGET SUMMARY",
         "-" * 40,
-        f"  Flights        : {_fmt(bd.get('flights', 0))}",
-        f"  Accommodation  : {_fmt(bd.get('accommodation', 0))}",
-        f"  Food           : {_fmt(bd.get('food', 0))}",
-        f"  Transport      : {_fmt(bd.get('local_transport', 0))}",
-        f"  Activities     : {_fmt(bd.get('activities', 0))}",
-        f"  Miscellaneous  : {_fmt(bd.get('miscellaneous', 0))}",
-        f"  Total Estimated: {_fmt(bd.get('total_estimated', 0))}",
-        f"  Remaining      : {_fmt(bd.get('remaining_budget', 0))}",
+        f"  Flights        : {f(bd.get('flights', 0))}",
+        f"  Accommodation  : {f(bd.get('accommodation', 0))}",
+        f"  Food           : {f(bd.get('food', 0))}",
+        f"  Transport      : {f(bd.get('local_transport', 0))}",
+        f"  Activities     : {f(bd.get('activities', 0))}",
+        f"  Miscellaneous  : {f(bd.get('miscellaneous', 0))}",
+        f"  Total Estimated: {f(bd.get('total_estimated', 0))}",
+        f"  Remaining      : {f(bd.get('remaining_budget', 0))}",
         f"  Status         : {bd.get('budget_status', '')}",
         f"  Local Currency : {bd.get('total_estimated_local', '')} {bd.get('local_currency', '')}",
         "",
@@ -124,31 +150,36 @@ def _generate_pdf(plan: dict) -> bytes | None:
                                  fontSize=10, leading=16,
                                  textColor=colors.HexColor("#374151"))
 
-        bd    = plan.get("budget_breakdown", {})
-        orig  = plan.get("origin", "")
-        dest  = plan.get("destination", "")
-        route = f"{orig} to {dest}" if orig else dest
-        story = []
+        bd     = plan.get("budget_breakdown", {})
+        orig   = plan.get("origin", "")
+        dest   = plan.get("destination", "")
+        route  = f"{orig} to {dest}" if orig else dest
+        o_sym  = bd.get("origin_currency_symbol", "Rs")
+        o_code = bd.get("origin_currency", "INR")
 
+        def f(n):
+            return fmt_currency(float(n or 0), o_code, o_sym)
+
+        story = []
         story.append(Paragraph(route, title_s))
         story.append(Paragraph(
             f"{plan.get('days')} days  |  {plan.get('travelers')} traveler(s)  |  "
-            f"{_fmt(plan.get('budget', 0))}", body_s))
+            f"{f(plan.get('budget', 0))}", body_s))
         story.append(HRFlowable(width="100%", thickness=1,
                                 color=colors.HexColor("#e5e7eb")))
         story.append(Spacer(1, 0.3*cm))
-        story.append(Paragraph("Budget Breakdown", h2_s))
 
         lc = bd.get("local_currency", "")
+        story.append(Paragraph("Budget Breakdown", h2_s))
         tbl_data = [
-            ["Category", "INR", f"Local ({lc})"],
-            ["Flights",       _fmt(bd.get("flights", 0)),       ""],
-            ["Accommodation", _fmt(bd.get("accommodation", 0)), ""],
-            ["Food",          _fmt(bd.get("food", 0)),          ""],
-            ["Transport",     _fmt(bd.get("local_transport", 0)), ""],
-            ["Activities",    _fmt(bd.get("activities", 0)),    ""],
-            ["Misc",          _fmt(bd.get("miscellaneous", 0)), ""],
-            ["TOTAL",         _fmt(bd.get("total_estimated", 0)),
+            ["Category", o_code, f"Local ({lc})"],
+            ["Flights",       f(bd.get("flights", 0)),       ""],
+            ["Accommodation", f(bd.get("accommodation", 0)), ""],
+            ["Food",          f(bd.get("food", 0)),          ""],
+            ["Transport",     f(bd.get("local_transport", 0)), ""],
+            ["Activities",    f(bd.get("activities", 0)),    ""],
+            ["Misc",          f(bd.get("miscellaneous", 0)), ""],
+            ["TOTAL",         f(bd.get("total_estimated", 0)),
              bd.get("total_estimated_local", "")],
         ]
         tbl = Table(tbl_data, colWidths=[7*cm, 5*cm, 4*cm])
@@ -485,11 +516,23 @@ with st.sidebar:
     origin = st.text_input(
         "From (Origin City)",
         value="Delhi",
-        placeholder="e.g. Mumbai, Chennai, Bangalore",
+        placeholder="e.g. Mumbai, London, New York",
     )
+    # Store origin in session state so _fmt() can use it before plan is generated
+    st.session_state["_sidebar_origin"] = origin
+
     destination = st.text_input(
         "To (Destination)",
         placeholder="e.g. Tokyo, Paris, Bali",
+    )
+
+    # Derive and display origin currency hint
+    _o_code   = currency_for_origin(origin) if origin else "INR"
+    _o_symbol = SYMBOLS.get(_o_code, _o_code)
+    st.markdown(
+        f'<div style="font-size:0.72rem; color:#9ca3af; margin-top:-0.4rem; margin-bottom:0.6rem;">'
+        f'Origin currency detected: <strong style="color:#1d4ed8;">{_o_symbol} {_o_code}</strong></div>',
+        unsafe_allow_html=True,
     )
 
     st.markdown("### Trip Details")
@@ -500,9 +543,12 @@ with st.sidebar:
         travelers = st.number_input("Travelers", min_value=1, max_value=20, value=2)
 
     budget = st.number_input(
-        "Total Budget (Rs)",
-        min_value=5_000, max_value=50_000_000,
-        value=100_000, step=5_000, format="%d",
+        f"Total Budget ({_o_symbol} {_o_code})",
+        min_value=0,
+        max_value=100_000_000,
+        value=100_000 if _o_code == "INR" else 1_000,
+        step=500 if _o_code in {"USD", "EUR", "GBP", "AUD", "CAD"} else 5_000,
+        format="%d",
     )
 
     travel_dates = st.text_input(
@@ -701,9 +747,6 @@ if generate_btn:
 # ===========================================================================
 # RESULTS DASHBOARD
 # ===========================================================================
-
-
-
 plan = st.session_state.plan_result
 if not plan:
     st.stop()
@@ -722,6 +765,14 @@ local_symbol  = str(bd.get("local_currency_symbol") or "")
 route_label   = f"{orig} to {dest}" if orig else dest
 status_str    = str(bd.get("budget_status") or "")
 
+# Origin currency for this plan
+o_code   = bd.get("origin_currency") or currency_for_origin(orig)
+o_symbol = bd.get("origin_currency_symbol") or SYMBOLS.get(o_code, o_code)
+
+def _f(n: float) -> str:
+    """Format in origin currency for this plan."""
+    return fmt_currency(float(n or 0), o_code, o_symbol)
+
 # ── Page header ─────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div style="display:flex; justify-content:space-between; align-items:flex-start;
@@ -737,6 +788,7 @@ st.markdown(f"""
   <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
     <span class="badge badge-green">Plan Ready</span>
     <span class="badge badge-blue">5 Agents</span>
+    <span class="badge badge-blue">{o_symbol} {o_code}</span>
     {'<span class="badge badge-green">Live Currency</span>'
      if "live" in bd.get("rate_source","").lower() else
      '<span class="badge badge-gray">Currency Estimate</span>'}
@@ -754,10 +806,10 @@ status_color = (
 for col, (label, value, sub, color) in zip(
     [k1, k2, k3, k4],
     [
-        ("Total Budget",   _fmt(total_budget),          "Your planned spend",       "#1d4ed8"),
-        ("Estimated Cost", _fmt(total_est),             "All expenses combined",    "#7c3aed"),
-        ("Savings",        _fmt(max(remaining, 0)),     status_str,                 status_color),
-        ("Daily Average",  _fmt(bd.get("daily_average") or 0),
+        ("Total Budget",   _f(total_budget),         "Your planned spend",       "#1d4ed8"),
+        ("Estimated Cost", _f(total_est),            "All expenses combined",    "#7c3aed"),
+        ("Savings",        _f(max(remaining, 0)),    status_str,                 status_color),
+        ("Daily Average",  _f(bd.get("daily_average") or 0),
          f"{utilization:.0f}% of budget used", "#d97706"),
     ],
 ):
@@ -784,7 +836,6 @@ with tabs[0]:
     left_col, right_col = st.columns([3, 2], gap="medium")
 
     with left_col:
-        # Budget breakdown bars
         cats = [
             ("Flights",       float(bd.get("flights") or 0),       "#1d4ed8"),
             ("Accommodation", float(bd.get("accommodation") or 0), "#7c3aed"),
@@ -801,7 +852,7 @@ with tabs[0]:
             <div class="progress-row">
               <div class="pl">{cat}</div>
               <div class="pb"><div class="pf" style="width:{pct:.1f}%; background:{color};"></div></div>
-              <div class="pa">{_fmt(amt)}</div>
+              <div class="pa">{_f(amt)}</div>
               <div class="pp">{pct:.0f}%</div>
             </div>
             """, unsafe_allow_html=True)
@@ -811,7 +862,6 @@ with tabs[0]:
         fd = plan.get("flight_data") or {}
         hd = plan.get("hotel_data")  or {}
 
-        # Quick stats card
         cheapest     = fd.get("cheapest_option") or {}
         flight_src   = fd.get("data_source", "")
         hotel_src    = hd.get("data_source", "")
@@ -820,7 +870,7 @@ with tabs[0]:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.markdown('<div style="font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:0.5rem;">Quick Stats</div>', unsafe_allow_html=True)
         rows = [
-            ("Per Person Total",  _fmt(per_person)),
+            ("Per Person Total",  _f(per_person)),
             ("Best Flight",       cheapest.get("airline", "See Flights tab")),
             ("Hotel Nights",      f"{hd.get('nights', days_val)} nights"),
             ("Rooms Needed",      str(hd.get("rooms_needed", 1))),
@@ -834,7 +884,6 @@ with tabs[0]:
             </div>
             """, unsafe_allow_html=True)
 
-        # Data source badges
         st.markdown('<div style="margin-top:0.6rem; display:flex; gap:5px; flex-wrap:wrap;">', unsafe_allow_html=True)
         if "Amadeus" in flight_src:
             st.markdown('<span class="badge badge-green">Live Flights</span>', unsafe_allow_html=True)
@@ -847,8 +896,8 @@ with tabs[0]:
         st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # Local currency card
-        if local_code and local_code != "INR":
+        # Local (destination) currency card — only show when different from origin
+        if local_code and local_code != o_code:
             rate_src    = bd.get("rate_source", "")
             is_live_cur = "live" in rate_src.lower()
             badge_cls   = "badge-green" if is_live_cur else "badge-orange"
@@ -856,13 +905,13 @@ with tabs[0]:
             rate_val    = float(bd.get("exchange_rate") or 0)
 
             st.markdown('<div class="card">', unsafe_allow_html=True)
-            st.markdown('<div style="font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:0.5rem;">Local Currency</div>', unsafe_allow_html=True)
+            st.markdown('<div style="font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:0.5rem;">Destination Currency</div>', unsafe_allow_html=True)
             st.markdown(f"""
             <div style="font-size:1.25rem; font-weight:700; color:#1d4ed8; margin-bottom:3px;">
               {local_symbol} {local_code}
             </div>
             <div style="font-size:0.78rem; color:#6b7280; margin-bottom:5px;">
-              1 INR = {rate_val:.4f} {local_code}
+              1 {o_code} = {rate_val:.4f} {local_code}
             </div>
             <span class="badge {badge_cls}">{badge_lbl}</span>
             <div style="margin-top:8px; font-size:0.8rem; color:#374151;">
@@ -874,15 +923,14 @@ with tabs[0]:
             """, unsafe_allow_html=True)
             st.markdown("</div>", unsafe_allow_html=True)
 
-            # Conversion reference table
             examples = bd.get("budget_examples_local") or {}
             if examples:
                 st.markdown('<div class="card">', unsafe_allow_html=True)
-                st.markdown(f'<div style="font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:0.5rem;">INR to {local_code} Reference</div>', unsafe_allow_html=True)
-                for inr_str, loc_str in examples.items():
+                st.markdown(f'<div style="font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:0.5rem;">{o_code} to {local_code} Reference</div>', unsafe_allow_html=True)
+                for orig_str, loc_str in examples.items():
                     st.markdown(f"""
                     <div class="stat-row">
-                      <span class="stat-label">{inr_str}</span>
+                      <span class="stat-label">{orig_str}</span>
                       <span class="stat-value" style="color:#1d4ed8;">{loc_str}</span>
                     </div>
                     """, unsafe_allow_html=True)
@@ -896,10 +944,13 @@ with tabs[1]:
         st.info("Flight data not available.")
     else:
         m1, m2, m3 = st.columns(3)
+        # Flight agent should store cost in origin currency as total_cost_origin
+        cost_pp = fd.get("cost_per_person_origin") or fd.get("cost_per_person_inr") or 0
+        cost_tt = fd.get("total_cost_origin") or fd.get("total_cost_inr") or 0
         with m1:
-            st.metric("Cost Per Person",   _fmt(fd.get("cost_per_person_inr") or 0), "Round trip")
+            st.metric("Cost Per Person",   _f(cost_pp), "Round trip")
         with m2:
-            st.metric("Total Flight Cost", _fmt(fd.get("total_cost_inr") or 0),      f"{travelers_val} traveler(s)")
+            st.metric("Total Flight Cost", _f(cost_tt), f"{travelers_val} traveler(s)")
         with m3:
             src = fd.get("data_source", "estimate")
             src_lbl = "Amadeus API (live)" if "Amadeus" in src else "Fare estimate"
@@ -909,19 +960,23 @@ with tabs[1]:
         if offers:
             st.markdown('<div style="font-weight:600; font-size:0.88rem; color:#374151; margin:1rem 0 0.5rem;">Available Options</div>', unsafe_allow_html=True)
             o_cols = st.columns(min(len(offers), 3))
-            cheapest_price = min((o.get("price_inr", 999999) for o in offers), default=0)
+            # Prefer origin-currency price field, fall back to inr
+            def _offer_price(o):
+                return o.get("price_origin") or o.get("price_inr") or 0
+            cheapest_price = min((_offer_price(o) for o in offers), default=0)
             for col, offer in zip(o_cols, offers[:3]):
                 with col:
-                    is_best = offer.get("price_inr", 0) == cheapest_price
-                    accent  = "border-top:3px solid #1d4ed8;" if is_best else "border-top:3px solid #e5e7eb;"
-                    badge   = '<span class="badge badge-green" style="margin-bottom:6px;display:inline-block;">Best Price</span>' if is_best else ""
+                    price    = _offer_price(offer)
+                    is_best  = price == cheapest_price
+                    accent   = "border-top:3px solid #1d4ed8;" if is_best else "border-top:3px solid #e5e7eb;"
+                    badge    = '<span class="badge badge-green" style="margin-bottom:6px;display:inline-block;">Best Price</span>' if is_best else ""
                     st.markdown(f"""
                     <div class="card" style="{accent}">
                       {badge}
                       <div style="font-weight:700; font-size:0.93rem; color:#111827;
                                   margin-bottom:5px;">{offer.get("airline","—")}</div>
                       <div style="font-size:1.35rem; font-weight:700; color:#1d4ed8;
-                                  margin-bottom:3px;">{_fmt(offer.get("price_inr",0))}</div>
+                                  margin-bottom:3px;">{_f(price)}</div>
                       <div style="font-size:0.77rem; color:#6b7280;">
                         {offer.get("stop_label","—")} &middot; {offer.get("duration","varies")}
                       </div>
@@ -953,7 +1008,7 @@ with tabs[2]:
         st.info("Hotel data not available.")
     else:
         src = hd.get("data_source", "")
-        src_lbl = "Booking.com (live)" if "live" in src.lower() else "Published rate estimate"
+        src_lbl   = "Booking.com (live)" if "live" in src.lower() else "Published rate estimate"
         badge_cls = "badge-green" if "live" in src.lower() else "badge-gray"
         st.markdown(f'<span class="badge {badge_cls}">{src_lbl}</span>', unsafe_allow_html=True)
         st.markdown("")
@@ -961,7 +1016,7 @@ with tabs[2]:
         options = hd.get("options") or []
         tier_colors = {"Budget": "#15803d", "Mid-range": "#1d4ed8", "Luxury": "#d97706"}
         if options:
-            h_cols = st.columns(len(options))
+            h_cols  = st.columns(len(options))
             rec_name = (hd.get("recommended") or {}).get("name", "")
             for col, opt in zip(h_cols, options):
                 with col:
@@ -969,8 +1024,10 @@ with tabs[2]:
                     color = tier_colors.get(tier, "#6b7280")
                     stars = int(float(opt.get("rating") or 3))
                     star_str = "★" * stars + "☆" * (5 - stars)
-                    is_rec = opt.get("name", "") == rec_name
+                    is_rec   = opt.get("name", "") == rec_name
                     rec_html = '<div style="font-size:0.69rem;color:#15803d;font-weight:600;margin-bottom:3px;">Recommended</div>' if is_rec else ""
+                    # Hotel agent should store price in origin currency; fall back gracefully
+                    price_per_night = opt.get("price_per_night_origin") or opt.get("price_per_night") or 0
                     st.markdown(f"""
                     <div class="card card-top-accent" style="border-top-color:{color}; text-align:center;">
                       {rec_html}
@@ -979,7 +1036,7 @@ with tabs[2]:
                       <div style="font-weight:600; font-size:0.88rem; color:#111827;
                                   margin-bottom:8px; min-height:2.4rem;">{opt.get("name","—")}</div>
                       <div style="font-size:1.35rem; font-weight:700; color:{color};">
-                        {_fmt(opt.get("price_per_night") or 0)}
+                        {_f(price_per_night)}
                       </div>
                       <div style="font-size:0.72rem; color:#9ca3af; margin-bottom:5px;">per night</div>
                       <div style="color:#d97706; font-size:0.85rem;">{star_str} {opt.get("rating","")}</div>
@@ -990,9 +1047,10 @@ with tabs[2]:
         if rec:
             nights     = hd.get("nights", days_val)
             total_stay = hd.get("total_hotel_cost", 0)
+            rec_ppn    = rec.get("price_per_night_origin") or rec.get("price_per_night") or 0
             st.info(
-                f"Recommended: {rec.get('name','—')} at {_fmt(rec.get('price_per_night',0))}/night  "
-                f"|  Total {nights}-night stay: {_fmt(total_stay)}"
+                f"Recommended: {rec.get('name','—')} at {_f(rec_ppn)}/night  "
+                f"|  Total {nights}-night stay: {_f(total_stay)}"
             )
         tip = hd.get("booking_tip", "")
         if tip:
@@ -1010,7 +1068,6 @@ with tabs[3]:
     if not itinerary_text:
         st.info("Itinerary not available.")
     else:
-        # Parse day blocks
         lines   = itinerary_text.split("\n")
         current: list[str] = []
         blocks:  list[list[str]] = []
@@ -1047,7 +1104,6 @@ with tabs[3]:
                 </div>
                 """, unsafe_allow_html=True)
         else:
-            # Fallback: just render as text
             st.markdown(f'<div class="card"><div style="font-size:0.86rem; color:#374151; line-height:1.75; white-space:pre-line;">{itinerary_text}</div></div>', unsafe_allow_html=True)
 
 
@@ -1071,6 +1127,9 @@ with tabs[4]:
         margin=dict(t=38, b=18, l=8, r=8),
     )
 
+    # Tick prefix for charts — use symbol if short enough, else code
+    tick_prefix = o_symbol if len(o_symbol) <= 3 else o_code + " "
+
     c1, c2 = st.columns(2)
 
     with c1:
@@ -1080,14 +1139,14 @@ with tabs[4]:
             hole=0.6,
             marker=dict(colors=chart_colors, line=dict(color="#ffffff", width=2)),
             textfont=dict(size=11),
-            hovertemplate="<b>%{label}</b><br>Rs %{value:,.0f}<br>%{percent}<extra></extra>",
+            hovertemplate=f"<b>%{{label}}</b><br>{tick_prefix}%{{value:,.0f}}<br>%{{percent}}<extra></extra>",
         ))
         fig.update_layout(
             **base_layout,
-            title=dict(text="Budget Breakdown", font=dict(size=13, color="#111827")),
+            title=dict(text=f"Budget Breakdown ({o_code})", font=dict(size=13, color="#111827")),
             legend=dict(bgcolor=transparent, font=dict(color="#6b7280", size=11)),
             annotations=[dict(
-                text=f"Rs {total_est:,.0f}", x=0.5, y=0.5,
+                text=f"{tick_prefix}{total_est:,.0f}", x=0.5, y=0.5,
                 font=dict(size=12, color="#111827"), showarrow=False,
             )],
         )
@@ -1095,7 +1154,7 @@ with tabs[4]:
 
     with c2:
         random.seed(42)
-        daily_avg  = float(bd.get("daily_average") or 2000)
+        daily_avg  = float(bd.get("daily_average") or 1)
         daily_vals = [round(daily_avg * random.uniform(0.75, 1.3)) for _ in range(days_val)]
         day_labels = [f"Day {i+1}" for i in range(days_val)]
 
@@ -1106,13 +1165,14 @@ with tabs[4]:
                 colorscale=[[0, "#dbeafe"], [0.5, "#2563eb"], [1, "#1e3a5f"]],
                 line=dict(width=0),
             ),
-            hovertemplate="<b>%{x}</b><br>Rs %{y:,.0f}<extra></extra>",
+            hovertemplate=f"<b>%{{x}}</b><br>{tick_prefix}%{{y:,.0f}}<extra></extra>",
         ))
         fig2.update_layout(
             **base_layout,
-            title=dict(text="Estimated Daily Spend", font=dict(size=13, color="#111827")),
+            title=dict(text=f"Estimated Daily Spend ({o_code})", font=dict(size=13, color="#111827")),
             xaxis=dict(gridcolor="#f3f4f6", tickfont=dict(color="#9ca3af")),
-            yaxis=dict(gridcolor="#f3f4f6", tickfont=dict(color="#9ca3af"), tickprefix="Rs "),
+            yaxis=dict(gridcolor="#f3f4f6", tickfont=dict(color="#9ca3af"),
+                       tickprefix=tick_prefix),
             bargap=0.3,
         )
         st.plotly_chart(fig2, use_container_width=True)
@@ -1126,7 +1186,7 @@ with tabs[4]:
             values=[total_est] + values,
             branchvalues="total",
             marker=dict(colors=["#f9fafb"] + chart_colors),
-            hovertemplate="<b>%{label}</b><br>Rs %{value:,.0f}<extra></extra>",
+            hovertemplate=f"<b>%{{label}}</b><br>{tick_prefix}%{{value:,.0f}}<extra></extra>",
             textfont=dict(size=11),
         ))
         fig3.update_layout(
@@ -1173,7 +1233,6 @@ with tabs[5]:
     if not recs:
         st.info("Recommendations not available.")
     else:
-        # Parse sections by known headings
         HEADINGS = {
             "TOP RESTAURANTS": "#d97706",
             "RESTAURANTS":     "#d97706",

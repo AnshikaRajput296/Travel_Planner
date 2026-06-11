@@ -4,7 +4,7 @@ tools/currency_tool.py
 Live currency conversion via ExchangeRate-API (free, no API key needed).
 Fallback: open.er-api.com (also free, no key needed).
 Auto-detects local currency from destination name.
-No mocked data used for rates — always fetches live first.
+Supports any origin currency — no longer hardcoded to INR.
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ import requests
 from langchain_core.tools import tool
 
 # -----------------------------------------------------------------
-# Destination -> ISO currency code  (200+ mappings)
+# Destination/Origin -> ISO currency code  (200+ mappings)
 # -----------------------------------------------------------------
 DEST_CURRENCY: dict[str, str] = {
     # Asia - East
@@ -111,11 +111,11 @@ SYMBOLS: dict[str, str] = {
     "ISK": "kr", "ILS": "₪", "JOD": "JD", "NPR": "Rs", "LKR": "Rs",
     "MVR": "Rf", "BTN": "Nu", "MMK": "K", "FJD": "FJ$",
     "ARS": "$", "COP": "$", "PEN": "S/", "CLP": "$",
-    "ETB": "Br", "TZS": "TSh", "CRC": "₡", "KES": "KSh",
+    "ETB": "Br", "TZS": "TSh", "MMK": "K",
 }
 
 # Only used if both live APIs fail
-_FALLBACK_RATES: dict[str, float] = {
+_FALLBACK_RATES_FROM_INR: dict[str, float] = {
     "USD": 0.012, "EUR": 0.011, "GBP": 0.0094, "JPY": 1.78,
     "AED": 0.044, "SGD": 0.016, "THB": 0.43, "IDR": 187.0,
     "MYR": 0.056, "AUD": 0.018, "NZD": 0.020, "CAD": 0.016,
@@ -133,14 +133,20 @@ _FALLBACK_RATES: dict[str, float] = {
 }
 
 
-def _fetch_live_rates() -> tuple[dict[str, float], bool]:
-    """Try two free live APIs. Return (rates, is_live)."""
-    for url in [
-        "https://api.exchangerate-api.com/v4/latest/INR",
-        "https://open.er-api.com/v6/latest/INR",
+def _fetch_live_rates(base_currency: str = "INR") -> tuple[dict[str, float], bool]:
+    """
+    Fetch live rates from base_currency to all others.
+    Returns (rates_dict, is_live).
+    rates_dict keys are target ISO codes, values are how many units of that
+    currency equal 1 unit of base_currency.
+    """
+    base = base_currency.upper()
+    for url_template in [
+        f"https://api.exchangerate-api.com/v4/latest/{base}",
+        f"https://open.er-api.com/v6/latest/{base}",
     ]:
         try:
-            r = requests.get(url, timeout=6)
+            r = requests.get(url_template, timeout=6)
             if r.status_code == 200:
                 data = r.json()
                 rates = data.get("rates") or data.get("conversion_rates", {})
@@ -148,71 +154,117 @@ def _fetch_live_rates() -> tuple[dict[str, float], bool]:
                     return rates, True
         except Exception:
             continue
-    return _FALLBACK_RATES, False
+
+    # Fallback: derive cross-rates from cached INR-based table
+    if base == "INR":
+        return _FALLBACK_RATES_FROM_INR, False
+
+    # Cross-rate: base -> INR rate, then INR -> target
+    base_to_inr = 1.0 / _FALLBACK_RATES_FROM_INR.get(base, 1.0)
+    derived: dict[str, float] = {}
+    for code, inr_rate in _FALLBACK_RATES_FROM_INR.items():
+        derived[code] = round(inr_rate * base_to_inr, 8)
+    derived[base] = 1.0
+    return derived, False
 
 
-def currency_for_destination(destination: str) -> str:
-    """Return ISO currency code for a destination string."""
-    d = destination.lower().strip()
+def currency_for_destination(location: str) -> str:
+    """Return ISO currency code for a location string (city or country)."""
+    d = location.lower().strip()
     for key, code in DEST_CURRENCY.items():
         if key in d:
             return code
     return "USD"
 
 
+# Convenience alias — used by budget_agent and app
+currency_for_origin = currency_for_destination
+
+
+def fmt_currency(amount: float, currency_code: str, symbol: str | None = None) -> str:
+    """Format a number with its currency symbol."""
+    sym = symbol or SYMBOLS.get(currency_code, currency_code)
+    # JPY, KRW, IDR, VND etc. — no decimal places
+    no_decimal = {"JPY", "KRW", "IDR", "VND", "HUF", "ISK", "CLP", "COP", "NGN",
+                  "MMK", "TZS", "ETB", "GHS", "PEN", "BHD", "KWD", "OMR"}
+    if currency_code in no_decimal:
+        return f"{sym} {round(amount):,}"
+    return f"{sym} {round(amount):,}"
+
+
 @tool
-def get_destination_currency(destination: str) -> dict:
+def get_destination_currency(destination: str, origin_currency: str = "INR") -> dict:
     """
-    Detect local currency for a destination and return live INR conversion data.
+    Detect local currency for a destination and return live conversion data
+    from the ORIGIN currency (default INR).
 
     Args:
-        destination: City or country name (e.g. 'Tokyo', 'Paris', 'Dubai').
+        destination:     City or country name (e.g. 'Tokyo', 'Paris', 'Dubai').
+        origin_currency: ISO code of the traveller's home currency (e.g. 'USD', 'GBP').
 
     Returns:
         dict with currency code, symbol, live exchange rate, and budget reference table.
     """
-    code   = currency_for_destination(destination)
-    symbol = SYMBOLS.get(code, code)
-    rates, is_live = _fetch_live_rates()
-    rate = float(rates.get(code, _FALLBACK_RATES.get(code, 1.0)))
+    dest_code   = currency_for_destination(destination)
+    dest_symbol = SYMBOLS.get(dest_code, dest_code)
+    orig_code   = origin_currency.upper().strip() or "INR"
+    orig_symbol = SYMBOLS.get(orig_code, orig_code)
+
+    rates, is_live = _fetch_live_rates(orig_code)
+    rate = float(rates.get(dest_code, _FALLBACK_RATES_FROM_INR.get(dest_code, 1.0)))
+
+    # Build reference table: sample amounts in origin currency -> destination currency
+    # Choose sensible sample amounts based on typical order of magnitude
+    if orig_code in {"JPY", "KRW", "IDR", "VND"}:
+        samples = [1_000, 5_000, 10_000, 50_000, 100_000, 500_000]
+    elif orig_code in {"USD", "EUR", "GBP", "CHF", "AUD", "CAD"}:
+        samples = [10, 50, 100, 500, 1_000, 5_000]
+    else:
+        samples = [100, 500, 1_000, 5_000, 10_000, 50_000]
 
     examples: dict[str, str] = {}
-    for amt in [1_000, 5_000, 10_000, 25_000, 50_000, 1_00_000]:
+    for amt in samples:
         converted = round(amt * rate)
-        examples[f"Rs {amt:,}"] = f"{symbol} {converted:,}"
+        examples[f"{orig_symbol} {amt:,}"] = f"{dest_symbol} {converted:,}"
 
     return {
-        "destination":     destination,
-        "local_currency":  code,
-        "symbol":          symbol,
-        "rate_numeric":    rate,
-        "rate_display":    f"1 INR = {rate:.4f} {code}",
-        "rate_source":     "live (exchangerate-api.com)" if is_live else "approximate (offline fallback)",
-        "budget_examples": examples,
+        "destination":       destination,
+        "origin_currency":   orig_code,
+        "origin_symbol":     orig_symbol,
+        "local_currency":    dest_code,
+        "symbol":            dest_symbol,
+        "rate_numeric":      rate,
+        "rate_display":      f"1 {orig_code} = {rate:.4f} {dest_code}",
+        "rate_source":       "live (exchangerate-api.com)" if is_live else "approximate (offline fallback)",
+        "budget_examples":   examples,
     }
 
 
 @tool
-def convert_currency(amount_inr: float, target_currency: str) -> dict:
+def convert_currency(amount: float, from_currency: str, to_currency: str) -> dict:
     """
-    Convert INR amount to target currency using live exchange rates.
+    Convert an amount between any two currencies using live exchange rates.
 
     Args:
-        amount_inr:       Amount in Indian Rupees.
-        target_currency:  3-letter ISO currency code (e.g. 'JPY', 'EUR').
+        amount:        Amount to convert.
+        from_currency: Source ISO currency code (e.g. 'USD').
+        to_currency:   Target ISO currency code (e.g. 'JPY').
 
     Returns:
         dict with converted amount and rate info.
     """
-    code   = target_currency.upper().strip()
-    symbol = SYMBOLS.get(code, code)
-    rates, is_live = _fetch_live_rates()
-    rate = float(rates.get(code, _FALLBACK_RATES.get(code, 0.012)))
-    converted = round(amount_inr * rate, 2)
+    src    = from_currency.upper().strip()
+    tgt    = to_currency.upper().strip()
+    sym_s  = SYMBOLS.get(src, src)
+    sym_t  = SYMBOLS.get(tgt, tgt)
+
+    rates, is_live = _fetch_live_rates(src)
+    rate = float(rates.get(tgt, 1.0))
+    converted = round(amount * rate, 2)
 
     return {
-        "from":        f"Rs {amount_inr:,.0f}",
-        "to":          f"{symbol} {converted:,.2f} ({code})",
-        "rate":        f"1 INR = {rate:.6f} {code}",
+        "from":        f"{sym_s} {amount:,.2f} ({src})",
+        "to":          f"{sym_t} {converted:,.2f} ({tgt})",
+        "rate":        f"1 {src} = {rate:.6f} {tgt}",
         "rate_source": "live" if is_live else "approximate",
     }
